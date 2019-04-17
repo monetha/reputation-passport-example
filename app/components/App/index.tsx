@@ -56,7 +56,7 @@ export default class App extends React.Component<IProps, IState> {
 
   private getInitialState = () => {
     return {
-      passportAddress: '0xFBc43245f8df0D2a8f6393E63331f089888F43E7',
+      passportAddress: '',
       profile: null,
       error: null,
       isLoading: false,
