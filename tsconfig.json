@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "importHelpers": true,
+    "target": "es5",
+    "module": "esNext",
+    "jsx": "react",
+    "noEmit": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "lib": [ "dom", "es2015", "es2016" ],
+    "baseUrl": "./",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths":{
+      "fonts/*": ["app/assets/fonts/*"],
+      "images/*": ["app/assets/images/*"],
+      "app/*": ["app/*"]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

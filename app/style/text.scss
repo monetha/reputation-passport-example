@@ -1,0 +1,26 @@
+@import "vars/text.scss";
+@import "vars/colors.scss";
+
+body {
+  font-family: $fontFamilyRegular;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  font-family: $fontFamilyBold;
+  font-weight: bold;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: $colorTextPrimary;
+  text-transform: uppercase;
+}
+
+.msg-error{
+  margin-bottom: 20px;
+  color: $colorError;
+  font-weight: bold;
+}

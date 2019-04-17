@@ -1,0 +1,31 @@
+@import 'vars/colors.scss';
+
+// #region -------------- Loader -------------------------------------------------------------------
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  position: relative;
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+
+  &:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: #0072ff;
+    border-bottom-color: #0072ff;
+    animation: spinner .8s ease infinite;
+  }
+}
+
+// #endregion

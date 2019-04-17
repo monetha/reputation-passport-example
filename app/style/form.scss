@@ -1,0 +1,97 @@
+@import 'vars/layout.scss';
+
+// #region -------------- Input fields -------------------------------------------------------------------
+
+input[type="text"], select, textarea {
+  width: 100%;
+  min-height: 30px;
+  padding: 10px;
+  font-size: 14px;
+  color: black;
+  border: 1px solid #c1ddff;
+  border-radius: 4px;
+  outline: 0;
+  transition: border-color 0.5s;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: $colorBrandBlue;
+  }
+
+  @media #{$mdUp} {
+    max-width: 420px;
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+// #endregion
+
+// #region -------------- Buttons -------------------------------------------------------------------
+
+.btn {
+  position: relative;
+  display: inline-block;
+  height: auto;
+  padding: 11px 20px;
+  font-size: 14px;
+  color: white;
+  background-color: $colorBrandBlue;
+  border-radius: 30px;
+  border: none;
+  box-shadow: 0 5px 15px 0 rgba(0, 114, 255, 0.33);
+  box-sizing: border-box;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0);
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+  }
+
+  &:hover:not(:disabled) {
+    color: white;
+
+    &::after {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
+
+// #endregion
+
+.passport-address-form {
+  position: relative;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .submit-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    > * {
+      + * {
+        margin-left: 15px;
+      }
+    }
+  }
+}
