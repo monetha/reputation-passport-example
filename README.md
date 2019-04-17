@@ -1,8 +1,8 @@
 # Monetha Reputation Widget - Reputation Passport data from blockchain
 
-The following example app purpose is to show how Reputation Passport can be read using a helper [reputation js sdk](https://github.com/monetha/reputation-js-sdk). More about Reputation Passport can be found in [Monetha - Reputation Layer documentation](https://github.com/monetha/reputation-layer)
+The following example app's purpose is to show how Reputation Passport can be read using a helper [reputation js sdk](https://github.com/monetha/reputation-js-sdk). More about Reputation Passport can be found in [Monetha - Reputation Layer documentation](https://github.com/monetha/reputation-layer)
 
-This example is based on a reputation widget that Monetha user's get when they agree to publish their profiles. A [reputation widget](https://www.monetha.io/reputation-widgets) is one of the multiple features that we offer in our Monetha Platform. Though reputation widgets are available to user's who didn't create a Passport. The example below will show you how we retrieve data for users who did create the Passport.
+This example is based on a reputation widget that Monetha users get when they agree to publish their profiles. A [reputation widget](https://www.monetha.io/reputation-widgets) is one of the multiple features that we offer in our Monetha Platform. Though reputation widgets are also available to users who didn't create a Passport, the example below will show you how we retrieve data for users who did create the Passport.
 
 In order to achieve the following we leverage [reputation js sdk](https://github.com/monetha/reputation-js-sdk). You can read more about Monetha Reputation Layer implementation in our [Github repo](https://github.com/monetha/reputation-layer)
 
@@ -18,7 +18,7 @@ After dependency installation is completed you can start the app with default co
 
 This will run a local node.js server and serve the app on http://localhost:3000. First load might take some time due to building devDependencies for debugging purpose.
 
-After application has loaded you should see an input box for entering a passport address. After entering a passport a passport address and clicking "Submit" information will be retrieved from blockchain and a reputation widget will be rendered.
+After application has loaded you should see an input box for entering a passport address. After entering a password, passport address and clicking "Submit" - information will be retrieved from blockchain and reputation widget will be rendered.
 
 ## Implementation
 
@@ -28,13 +28,13 @@ All functionality can be found in [app/components/App/index.tsx](app/components/
 
 In order to read the Monetha Reputation Wallet data from the blockchain we need the following:
 
-- ETH_NETWORK_URL a JSON RPC url for an Ethereum node that will be retrieving our data. Default value `https://mainnet.infura.io`. We will be using mainnet to read passport data
-- FACT_PROVIDER_ADDRESS an Ethereum address of a fact provider who is provisioning the data to a Reputation Passport. Default value `0x38297AA77546a175dD50AA59B53d8893f72609B0` Monetha fact provider in our live environment
-- passportAddress an Ethereum address of a Passport where data is stored. Feel free to use our test merchant passport address in live environment `0xFBc43245f8df0D2a8f6393E63331f089888F43E7`
+- ETH_NETWORK_URL - a JSON RPC url for an Ethereum node that will be retrieving our data. Default value is `https://mainnet.infura.io`. We will be using mainnet to read passport data
+- FACT_PROVIDER_ADDRESS - an Ethereum address of a fact provider who is provisioning the data to a Reputation Passport. Default value is `0x38297AA77546a175dD50AA59B53d8893f72609B0` - Monetha fact provider in our live environment
+- passportAddress - an Ethereum address of a Passport where data is stored. Feel free to use our test merchant passport address in live environment `0xFBc43245f8df0D2a8f6393E63331f089888F43E7`
 
 ```javascript
-    const ETH_NETWORK_URL = 'https://mainnet.infura.io'
-    const FACT_PROVIDER_ADDRESS = '0x38297AA77546a175dD50AA59B53d8893f72609B0'
+    const ETH_NETWORK_URL = 'https://mainnet.infura.io';
+    const FACT_PROVIDER_ADDRESS = '0x38297AA77546a175dD50AA59B53d8893f72609B0';
 
     const web3 = new Web3(new Web3.providers.HttpProvider(ETH_NETWORK_URL));
     const reader = new sdk.FactReader(web3, ETH_NETWORK_URL, passportAddress);
@@ -118,44 +118,44 @@ Methods responsible for rendering the widget and it's contents are `renderReputa
         }
 
         return (
-        <div className='reputation-widget-wrapper'>
-            <div className='reputation-widget'>
+            <div className='reputation-widget-wrapper'>
+                <div className='reputation-widget'>
 
-            {profile.nickname && <a className='profile-link' href={`https://www.monetha.io/profile/${profile.nickname}`} target='_blank' rel='noopener noreferrer' />}
+                    {profile.nickname && <a className='profile-link' href={`https://www.monetha.io/profile/${profile.nickname}`} target='_blank' rel='noopener noreferrer' />}
 
-            <div className='profile-info'>
-                <div>
-                {this.renderProfileImage()}
+                    <div className='profile-info'>
+                        <div>
+                            {this.renderProfileImage()}
+                        </div>
+
+                        <h4 className='profile-name'>{profile.name}</h4>
+
+                        {profile.nickname &&
+                            <a className='share-icon' href={`https://www.monetha.io/profile/${profile.nickname}`} target='_blank' rel='noopener noreferrer'>
+                                <img src={`https://www.monetha.io/assets/snippets/share.png`} alt='share' />
+                            </a>
+                        }
+                    </div>
+
+                    <div className='deal-stats'>
+                        <div className='reputation-score'>
+                            <div>{profile.reputationScore}</div>
+                            <img src={`https://www.monetha.io/assets/snippets/mth.png`} alt='mth' />
+                        </div>
+                        <div>
+                            <img src={`https://www.monetha.io/assets/snippets/star.png`} alt='star' />
+                            <div>{profile.starScore}</div>
+                        </div>
+                    </div>
                 </div>
 
-                <h4 className='profile-name'>{profile.name}</h4>
-
-                {profile.nickname &&
-                <a className='share-icon' href={`https://www.monetha.io/profile/${profile.nickname}`} target='_blank' rel='noopener noreferrer'>
-                    <img src={`https://www.monetha.io/assets/snippets/share.png`} alt='share' />
-                </a>
-                }
-            </div>
-
-            <div className='deal-stats'>
-                <div className='reputation-score'>
-                <div>{profile.reputationScore}</div>
-                <img src={`https://www.monetha.io/assets/snippets/mth.png`} alt='mth' />
-                </div>
-                <div>
-                <img src={`https://www.monetha.io/assets/snippets/star.png`} alt='star' />
-                <div>{profile.starScore}</div>
+                <div className='powered-by'>
+                    <h5 className='powered-by-text'>Powered by</h5>
+                    <a href={`https://www.monetha.io`} target='_blank' rel='noopener noreferrer'>
+                        <img src={`https://www.monetha.io/assets/snippets/logo.png`} alt='logo' />
+                    </a>
                 </div>
             </div>
-            </div>
-
-            <div className='powered-by'>
-            <h5 className='powered-by-text'>Powered by</h5>
-            <a href={`https://www.monetha.io`} target='_blank' rel='noopener noreferrer'>
-                <img src={`https://www.monetha.io/assets/snippets/logo.png`} alt='logo' />
-            </a>
-            </div>
-        </div>
         );
     }
 
@@ -163,22 +163,22 @@ Methods responsible for rendering the widget and it's contents are `renderReputa
         const { profile } = this.state;
 
         if (!profile) {
-        return null;
+            return null;
         }
 
         let profileImage = null;
         if (profile.avatarUrl) {
-        profileImage = <div className='profile-image' style={{ backgroundImage: `url('${profile.avatarUrl}')` }} />
+            profileImage = <div className='profile-image' style={{ backgroundImage: `url('${profile.avatarUrl}')` }} />
         }
 
         return (
-        <div className='profile-image-wrapper'>
-            <div className='profile-first-letters'>
-            {getFirstLetters(profile.name, 3)}
-            </div>
+            <div className='profile-image-wrapper'>
+                <div className='profile-first-letters'>
+                    {getFirstLetters(profile.name, 3)}
+                </div>
 
-            {profileImage}
-        </div>
+                {profileImage}
+            </div>
         );
     }
 ```
@@ -187,4 +187,4 @@ Full code for rendering an widget can be found in [app/components/App/index.tsx]
 
 ## Conclusion
 
-The following application is just a quick example of how reputation data is being read from the blockchain without a necessity to being locked down to a single platform. We are focus on building a data exchange framework that can ensure censorship resistance, transferability, transparency and security. Feel free to contact us at team@monetha.io
+The following application is just a quick example of how reputation data is being read from the blockchain without a necessity to being locked down to a single platform. We are focusing on building a data exchange framework that can ensure censorship resistance, transferability, transparency and security. Feel free to contact us at team@monetha.io
