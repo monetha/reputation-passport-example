@@ -1,6 +1,6 @@
 import { getIPFSClient } from 'app/utils/ipfs';
 import React from 'react';
-import sdk from 'reputation-sdk/lib/proto';
+import { FactReader } from 'reputation-sdk';
 import Web3 from 'web3';
 
 // Style
@@ -165,7 +165,7 @@ export default class App extends React.Component<IProps, IState> {
     const FACT_PROVIDER_ADDRESS = '0x38297AA77546a175dD50AA59B53d8893f72609B0'
 
     const web3 = new Web3(new Web3.providers.HttpProvider(ETH_NETWORK_URL));
-    const reader = new sdk.FactReader(web3, ETH_NETWORK_URL, passportAddress);
+    const reader = new FactReader(web3, ETH_NETWORK_URL, passportAddress);
 
     // Monetha stores facts in multiple keys in order to optimize the costs of updating the data
     // 'profile' a json object containing the following
@@ -193,7 +193,7 @@ export default class App extends React.Component<IProps, IState> {
     
     // Retrieval of `profile` data
     const profileResponse = await reader.getTxdata(FACT_PROVIDER_ADDRESS, FACT_KEY_PROFILE);
-    const profile = JSON.parse(profileResponse);
+    const profile = JSON.parse(web3.utils.toAscii(web3.utils.bytesToHex(profileResponse)));
 
     if (profile) {
       data.name = profile.name;
@@ -202,7 +202,7 @@ export default class App extends React.Component<IProps, IState> {
 
     // Retrieval of `deal_stats` data
     const dealStatsResponse = await reader.getTxdata(FACT_PROVIDER_ADDRESS, FACT_KEY_DEAL_STATS);
-    const dealStats = JSON.parse(dealStatsResponse);
+    const dealStats = JSON.parse(web3.utils.toAscii(web3.utils.bytesToHex(dealStatsResponse)));
 
     if (dealStats) {
       data.reputationScore = dealStats.reputation_score;
