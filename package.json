@@ -55,7 +55,7 @@
     "fontfaceobserver": "2.1.0",
     "history": "4.7.2",
     "lodash": "^4.17.15",
-    "minimist": "1.2.0",
+    "minimist": "1.2.6",
     "moment": "^2.24.0",
     "react": "16.7.0",
     "react-dom": "16.7.0",
